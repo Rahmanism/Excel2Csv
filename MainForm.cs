@@ -22,9 +22,20 @@ namespace Excel2Csv
             fileList = new List<string>();
         }
 
+        private void SetList(string[] list, bool add = true)
+        {
+            if (!add) {
+                fileList.Clear();
+            }
+            fileList.AddRange(list);
+
+            fileListLbx.Items.Clear();
+            fileListLbx.Items.AddRange(fileList.ToArray());
+        }
+
         private void MainForm_DragEnter(object sender, DragEventArgs e)
         {
-            inputPanel.BackColor = Color.Red;
+            inputPanel.BackColor = Color.AntiqueWhite;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.All;
             else
@@ -40,11 +51,7 @@ namespace Excel2Csv
         {
             inputPanel.BackColor = Control.DefaultBackColor;
             messageLbl.Text = "";
-            foreach (string path in (string[])e.Data.GetData(DataFormats.FileDrop))
-            {
-                fileList.Add(Path.GetFullPath(path));
-            }
-            fileListLbx.Items.AddRange(fileList.ToArray());
+            SetList((string[])e.Data.GetData(DataFormats.FileDrop));
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -69,8 +76,24 @@ namespace Excel2Csv
             MessageBox.Show("Excel to CSV convertor.\n" +
                 "\nRahmanism\n" +
                 "https://github.com/Rahmanism/Excel2Csv" +
-                "\n\nVersion: 1.0.0\n" +
+                "\n\nVersion: 1.0.1\n" +
                 "July 8, 2020 - 1399/04/18");
+        }
+
+        private void outputLbl_DoubleClick(object sender, EventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new OpenFileDialog {
+                Filter = 
+                    "Excel files (*.xslx;*.xls)|*.xlsx;*.xls|All files (*.*)|*.*",
+                RestoreDirectory = true,
+                Multiselect = true,
+                Title = "Select some Excel files ..."
+            };
+
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                SetList(openFileDialog.FileNames);
+            }
         }
     }
 }

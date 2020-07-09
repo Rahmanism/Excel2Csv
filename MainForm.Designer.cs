@@ -33,9 +33,10 @@
             this.clearListBtn = new System.Windows.Forms.Button();
             this.outputLbl = new System.Windows.Forms.Label();
             this.fileListLbx = new System.Windows.Forms.ListBox();
-            this.messageLbl = new System.Windows.Forms.Label();
             this.saveBtn = new System.Windows.Forms.Button();
             this.bottomPnl = new System.Windows.Forms.Panel();
+            this.messageLbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.inputPanel.SuspendLayout();
             this.bottomPnl.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +51,6 @@
             this.inputPanel.Controls.Add(this.clearListBtn);
             this.inputPanel.Controls.Add(this.outputLbl);
             this.inputPanel.Controls.Add(this.fileListLbx);
-            this.inputPanel.Controls.Add(this.messageLbl);
             this.inputPanel.Location = new System.Drawing.Point(0, 0);
             this.inputPanel.Name = "inputPanel";
             this.inputPanel.Size = new System.Drawing.Size(800, 403);
@@ -82,12 +82,13 @@
             // 
             // outputLbl
             // 
-            this.outputLbl.AutoSize = true;
-            this.outputLbl.Location = new System.Drawing.Point(361, 57);
+            this.outputLbl.Location = new System.Drawing.Point(367, 41);
             this.outputLbl.Name = "outputLbl";
-            this.outputLbl.Size = new System.Drawing.Size(308, 21);
+            this.outputLbl.Size = new System.Drawing.Size(419, 351);
             this.outputLbl.TabIndex = 2;
-            this.outputLbl.Text = "Click on Convert button to start converting.";
+            this.outputLbl.Text = "Drag Excel files and drop them here... or just double click.\r\nClick on Convert bu" +
+    "tton to start converting.";
+            this.outputLbl.DoubleClick += new System.EventHandler(this.outputLbl_DoubleClick);
             // 
             // fileListLbx
             // 
@@ -96,19 +97,10 @@
             this.fileListLbx.FormattingEnabled = true;
             this.fileListLbx.HorizontalScrollbar = true;
             this.fileListLbx.ItemHeight = 21;
-            this.fileListLbx.Location = new System.Drawing.Point(19, 57);
+            this.fileListLbx.Location = new System.Drawing.Point(19, 36);
             this.fileListLbx.Name = "fileListLbx";
-            this.fileListLbx.Size = new System.Drawing.Size(325, 298);
+            this.fileListLbx.Size = new System.Drawing.Size(325, 319);
             this.fileListLbx.TabIndex = 1;
-            // 
-            // messageLbl
-            // 
-            this.messageLbl.AutoSize = true;
-            this.messageLbl.Location = new System.Drawing.Point(19, 17);
-            this.messageLbl.Name = "messageLbl";
-            this.messageLbl.Size = new System.Drawing.Size(265, 21);
-            this.messageLbl.TabIndex = 0;
-            this.messageLbl.Text = "Drag Excel files and drop them here...";
             // 
             // saveBtn
             // 
@@ -125,12 +117,30 @@
             // 
             // bottomPnl
             // 
+            this.bottomPnl.Controls.Add(this.messageLbl);
+            this.bottomPnl.Controls.Add(this.label1);
             this.bottomPnl.Controls.Add(this.saveBtn);
             this.bottomPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bottomPnl.Location = new System.Drawing.Point(0, 409);
             this.bottomPnl.Name = "bottomPnl";
             this.bottomPnl.Size = new System.Drawing.Size(800, 41);
             this.bottomPnl.TabIndex = 1;
+            // 
+            // messageLbl
+            // 
+            this.messageLbl.AutoSize = true;
+            this.messageLbl.Location = new System.Drawing.Point(12, 10);
+            this.messageLbl.Name = "messageLbl";
+            this.messageLbl.Size = new System.Drawing.Size(0, 21);
+            this.messageLbl.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 21);
+            this.label1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -158,12 +168,13 @@
 
         private System.Windows.Forms.Panel inputPanel;
         private System.Windows.Forms.Panel bottomPnl;
-        private System.Windows.Forms.Label messageLbl;
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.ListBox fileListLbx;
         private System.Windows.Forms.Label outputLbl;
         private System.Windows.Forms.Button clearListBtn;
         private System.Windows.Forms.Button aboutBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label messageLbl;
     }
 }
 
